@@ -26,7 +26,7 @@ function getHighestPageNumber ($htmlcode){
 	$result = 1;
 	$matches; 
 	
-	if (strpos($htmlcode, '<p class="pagebrowser">') != -1) {
+	if (strpos($htmlcode, '<p class="pagebrowser">') != false) {
 	        preg_match_all($pagepattern, $htmlcode, $matches);
 	        
 	        foreach ($matches as $value){
