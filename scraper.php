@@ -1,8 +1,6 @@
 <?php
 
-//set_time_limit(0);
-//error_reporting(-1);
-
+require 'scraperwiki.php';
 	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
 
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
