@@ -30,7 +30,6 @@ function getHighestPageNumber ($htmlcode){
 	preg_match_all($pageexistpattern, $htmlcode, $matchexist);
 	
 	if (count($matchexist) > 0) {
-	        
 	        preg_match_all($pagepattern, $htmlcode, $matches);
 	        
 	        foreach ($matches as $value){
@@ -39,6 +38,7 @@ function getHighestPageNumber ($htmlcode){
 	        	}
 	        }
 	}
+	print $result;
         return $result;
 }
 
