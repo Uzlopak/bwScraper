@@ -5,20 +5,38 @@ require 'scraperwiki.php';
 	
 	foreach ($lettersArray as $value) {
 		print ('Verarbeite Buchstaben ' . $value . "\n");
-		ripBhidByLetter($value);
+		ripBhidByLetter($value, 1);
 	}
 
-function ripBhidByLetter($letter){
+function ripBhidByLetter($letter, $page){
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
 	$bhidpattern = '/bhid=([0-9]*)&/m';
 	
 	$matchesBhid;
-	$output = scraperwiki::scrape($pathToOverviewByLetter . $letter);
+	
+	$output = scraperwiki::scrape($pathToOverviewByLetter . $letter . '&page=' . $page);
         preg_match_all($bhidpattern, $output, $matchesBhid);
         
         foreach ($matchesBhid[1] as $value){
         	ripBeidByBhid ($value);
         }
+        if (getHighestPageNumber($output) != $page) {
+        	$next = $page+1;
+        	ripBhidByLetter($letter, $next);
+        }
+}
+
+function getHighestPageNumber ($htmlcode){
+	$result = 1;
+	$matches; 
+        preg_match_all($bhidpattern, $output, $matches);
+        
+        foreach ($matches as $value){
+        	if ($value > $result) {
+        		$result = $value;
+        	}
+        }
+        return $result;
 }
 
 function ripBeidByBhid($bhid) {
