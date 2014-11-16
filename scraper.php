@@ -5,25 +5,21 @@ require 'scraperwiki.php';
 	
 	foreach ($lettersArray as $value) {
 		print ('Verarbeite Buchstaben ' . $value . "\n");
-		ripBhidByLetter($value, 1);
+		ripBhidByLetter($value);
 	}
 
-function ripBhidByLetter($letter, $page){
+function ripBhidByLetter($letter){
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
 	$bhidpattern = '/bhid=([0-9]*)&/m';
 	
 	$matchesBhid;
 	
 	print($pathToOverviewByLetter . $letter . '&page=' . $page);
-	$output = scraperwiki::scrape($pathToOverviewByLetter . $letter . '&page=' . $page);
+	$output = scraperwiki::scrape($pathToOverviewByLetter . $letter);
         preg_match_all($bhidpattern, $output, $matchesBhid);
         
         foreach ($matchesBhid[1] as $value){
-        	ripBeidByBhid ($value);
-        }
-        if (getHighestPageNumber($output) != $page) {
-        	$next = $page+1;
-        	ripBhidByLetter($letter, $next);
+        	ripBeidByBhid ($value, 1);
         }
 }
 
@@ -41,11 +37,11 @@ function getHighestPageNumber ($htmlcode){
         return $result;
 }
 
-function ripBeidByBhid($bhid) {
+function ripBeidByBhid($bhid, $page) {
 	$pathToResult 		= 'http://service-bw.de/zfinder-bw-web/authorities.do?bhid=';
 	$beidpattern = '/beid=([0-9]*)&/m';
 	$matchesBeid;
-	$output = scraperwiki::scrape($pathToResult . $bhid);
+	$output = scraperwiki::scrape($pathToResult . $bhid . '&page=' . $page);
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
@@ -57,7 +53,10 @@ function ripBeidByBhid($bhid) {
         		print "beid $value already in database\n";
         	}
         }
-	
+        if (getHighestPageNumber($output) != $page) {
+        	$next = $page+1;
+        	ripBhidByLetter($letter, $next);
+        }
 }
 
 
