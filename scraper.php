@@ -29,7 +29,9 @@ function ripBeidByBhid($bhid) {
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
-        	ripByBeid ($value);
+        	if (existsBeid($value) == false) {
+        		ripByBeid ($value);
+        	}
         }
 	
 }
@@ -91,4 +93,19 @@ function ripByBeid ($beid){
 	
 	scraperwiki::save_sqlite(array('data'), array('name' => $name,'email' => $email, 'address' => $adress, 'contact' => $contact, 'jurisdiction__slug' => 'baden-wuerttemberg', 'other_names' => '', 'description' => '', 'topic__slug' => '', 'parent__name' => '', 'classification' => '', 'url' => $url, 'website_dump' => '', 'request_note' => $beid));
       	print $name . "\n";
+}
+
+function existsBeid($beid){
+	$result = false;
+	$count = 0;
+	// Set total number of rows
+	if ($result = scraperwiki::select("count(*) as count from data where request_note ='". $value . "'")) {
+		if (!empty($result[0]['count'])) {
+			$count = $result[0]['count'];
+		} 
+	}
+	if ($count > 0){
+		$result = true;
+	}
+	return $result;
 }
