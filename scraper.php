@@ -2,13 +2,11 @@
 
 require 'scraperwiki.php';
 	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
-	/*
+	
 	foreach ($lettersArray as $value) {
 		print ('Verarbeite Buchstaben ' . $value . "\n");
 		ripBhidByLetter($value);
 	}
-	*/
-	ripBhidByLetter("C");
 
 function ripBhidByLetter($letter){
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
