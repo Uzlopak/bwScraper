@@ -1,7 +1,7 @@
 <?php
 require 'scraperwiki.php';
 	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
-	
+
 	foreach ($lettersArray as $value) {
 		print ('Verarbeite Buchstaben ' . $value . "\n");
 		ripBhidByLetter($value);
@@ -23,14 +23,14 @@ function ripBhidByLetter($letter){
 function getHighestPageNumber ($htmlcode){
 	$pagepattern = '/page=([0-9]|[1-9][0-9])/miUs';
 	$result = 1;
-	$matches; 
+	$matchespage; 
 	
-        preg_match_all($pagepattern, $htmlcode, $matches);
+        preg_match_all($pagepattern, $htmlcode, $matchespage);
         
-        foreach ($matches as $value){
+        foreach ($matchespage[1] as $value){
 		$val = intval($value);
-        	if ($val  > $result) {
-        		$result = $val ;
+        	if ($val  > intval($result)) {
+	     		$result = $val;
         	}
         }
         return $result;
