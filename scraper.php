@@ -30,7 +30,7 @@ function ripBeidByBhid($bhid) {
 	$output = scraperwiki::scrape("$pathToResult" . $bhid);
         preg_match_all($beidpattern, $output, $matchesBeid);
         
-        foreach ($matchesBhid[1] as $value){
+        foreach ($matchesBeid[1] as $value){
         	ripByBeid ($value);
         }
 	
