@@ -22,23 +22,17 @@ function ripBhidByLetter($letter){
 }
 
 function getHighestPageNumber ($htmlcode){
-	$pagepattern = '/page=(.*)">/miUs';
-	$pageexistpattern = '/<p class="pagebrowser">.*page=(.*)">/miUs';
+	$pagepattern = '/page=([0-9]|[1-9][0-9])/miUs';
 	$result = 1;
 	$matches; 
-	$matchexist;
-	preg_match_all($pageexistpattern, $htmlcode, $matchexist);
 	
-	if (count($matchexist) > 0) {
-	        preg_match_all($pagepattern, $htmlcode, $matches);
-	        
-	        foreach ($matches as $value){
-	        	if ($value > $result) {
-	        		$result = $value;
-	        	}
-	        }
-	}
-	print $result;
+        preg_match_all($pagepattern, $htmlcode, $matches);
+        
+        foreach ($matches as $value){
+        	if ($value > $result) {
+        		$result = $value;
+        	}
+        }
         return $result;
 }
 
