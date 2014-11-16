@@ -15,7 +15,7 @@ function ripBhidByLetter($letter){
 	$bhidpattern = '/bhid=([0-9]*)&/mg';
 	
 	$matchesBhid;
-	$output = scraperwiki::scrape("$pathToOverviewByLetter" . $bhid);
+	$output = scraperwiki::scrape("$pathToOverviewByLetter" . $letter);
         preg_match_all($bhidpattern, $output, $matchesBhid);
         
         foreach ($matchesBhid[1] as $value){
