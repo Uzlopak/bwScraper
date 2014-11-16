@@ -27,9 +27,10 @@ function ripBhidByLetter($letter, $page){
 }
 
 function getHighestPageNumber ($htmlcode){
+	$pagepattern = '/page=(.*)">/miUs';
 	$result = 1;
 	$matches; 
-        preg_match_all($bhidpattern, $output, $matches);
+        preg_match_all($pagepattern, $output, $matches);
         
         foreach ($matches as $value){
         	if ($value > $result) {
