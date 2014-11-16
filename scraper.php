@@ -11,10 +11,8 @@ require 'scraperwiki.php';
 function ripBhidByLetter($letter){
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
 	$bhidpattern = '/bhid=([0-9]*)&/m';
-	
 	$matchesBhid;
 	
-	print($pathToOverviewByLetter . $letter . '&page=' . $page);
 	$output = scraperwiki::scrape($pathToOverviewByLetter . $letter);
         preg_match_all($bhidpattern, $output, $matchesBhid);
         
@@ -55,7 +53,7 @@ function ripBeidByBhid($bhid, $page) {
         }
         if (getHighestPageNumber($output) != $page) {
         	$next = $page+1;
-        	ripBhidByLetter($letter, $next);
+        	ripBeidByBhid($bhid, $next);
         }
 }
 
