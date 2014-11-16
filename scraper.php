@@ -3,7 +3,7 @@
 //set_time_limit(0);
 //error_reporting(-1);
 
-	$lettersArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ'];
+	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
 
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
 	$pathToResult 		= 'http://service-bw.de/zfinder-bw-web/authorities.do?bhid=';
