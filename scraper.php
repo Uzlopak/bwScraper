@@ -22,6 +22,7 @@ function ripBhidByLetter($letter, $page){
         }
         if (getHighestPageNumber($output) != $page) {
         	$next = $page+1;
+        	print "next: $next\n";
         	ripBhidByLetter($letter, $next);
         }
 }
@@ -34,9 +35,11 @@ function getHighestPageNumber ($htmlcode){
         
         foreach ($matches as $value){
         	if ($value > $result) {
+        		print $value;
         		$result = $value;
         	}
         }
+        print $result . "\n";
         return $result;
 }
 
