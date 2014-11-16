@@ -23,10 +23,14 @@ function ripBhidByLetter($letter){
 
 function getHighestPageNumber ($htmlcode){
 	$pagepattern = '/page=(.*)">/miUs';
+	$pageexistpattern = '/<p class="pagebrowser">.*page=(.*)">/miUs';
 	$result = 1;
 	$matches; 
+	$matchexist;
+	preg_match_all($pageexistpattern, $htmlcode, $matchexist);
 	
-	if (strpos($htmlcode, '<p class="pagebrowser">') != false) {
+	if (count(matchexist) > 0) {
+	        
 	        preg_match_all($pagepattern, $htmlcode, $matches);
 	        
 	        foreach ($matches as $value){
