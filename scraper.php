@@ -25,13 +25,16 @@ function getHighestPageNumber ($htmlcode){
 	$pagepattern = '/page=(.*)">/miUs';
 	$result = 1;
 	$matches; 
-        preg_match_all($pagepattern, $htmlcode, $matches);
-        
-        foreach ($matches as $value){
-        	if ($value > $result) {
-        		$result = $value;
-        	}
-        }
+	
+	if (strpos($htmlcode, '<p class="pagebrowser">') != -1) {
+	        preg_match_all($pagepattern, $htmlcode, $matches);
+	        
+	        foreach ($matches as $value){
+	        	if ($value > $result) {
+	        		$result = $value;
+	        	}
+	        }
+	}
         return $result;
 }
 
