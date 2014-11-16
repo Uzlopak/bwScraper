@@ -71,12 +71,12 @@ function ripByBeid ($beid){
         
         preg_match($adresspattern1, $output, $temp);
         $adress1 = (isset($temp[1])) ? str_replace(';',',',trim(preg_replace('/\s+/', ' ', $temp[1]))) : '';
-        $adress1 = str_ireplace('<br/>', ',', $adress1);
+        $adress1 = str_ireplace(' <br/>', ', ', $adress1);
 	$adress1 = strip_tags($adress1);
 
         preg_match($adresspattern2, $output, $temp);
         $adress2 = (isset($temp[1])) ? str_replace(';',',',trim(preg_replace('/\s+/', ' ', $temp[1]))) : '';
-        $adress2 = str_ireplace('<br/>', ',', $adress2);
+        $adress2 = str_ireplace(' <br/>', ', ', $adress2);
 	$adress2 = strip_tags($adress2);
 	
 	$adress = (isset($temp[1])) ? $adress2 : $adress1;
