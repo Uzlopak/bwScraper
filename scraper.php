@@ -110,8 +110,8 @@ function existsBeid($beid){
 	}
 	$count = empty($count) ? 0 : $count;
 	if ($count > 0){
-		print ($count);
 		$result = true;
 	}
+		print ($count);
 	return $result;
 }
