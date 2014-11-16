@@ -13,7 +13,7 @@ function ripBhidByLetter($letter){
 	$bhidpattern = '/bhid=([0-9]*)&/m';
 	
 	$matchesBhid;
-	$output = scraperwiki::scrape("$pathToOverviewByLetter" . $letter);
+	$output = scraperwiki::scrape($pathToOverviewByLetter . $letter);
         preg_match_all($bhidpattern, $output, $matchesBhid);
         
         foreach ($matchesBhid[1] as $value){
@@ -25,7 +25,7 @@ function ripBeidByBhid($bhid) {
 	$pathToResult 		= 'http://service-bw.de/zfinder-bw-web/authorities.do?bhid=';
 	$beidpattern = '/beid=([0-9]*)&/m';
 	$matchesBeid;
-	$output = scraperwiki::scrape("$pathToResult" . $bhid);
+	$output = scraperwiki::scrape($pathToResult . $bhid);
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
@@ -80,7 +80,6 @@ function ripByBeid ($beid){
 	$adress2 = strip_tags($adress2);
 	
 	$adress = (isset($temp[1])) ? $adress2 : $adress1;
-
 
         preg_match($wwwpattern, $output, $temp);
         $url = (isset($temp[1])) ? trim(preg_replace('/\s+/', ' ', $temp[1])) : '';
