@@ -29,7 +29,7 @@ function getHighestPageNumber ($htmlcode){
 	$matchexist;
 	preg_match_all($pageexistpattern, $htmlcode, $matchexist);
 	
-	if (count(matchexist) > 0) {
+	if (count($matchexist) != 0) {
 	        
 	        preg_match_all($pagepattern, $htmlcode, $matches);
 	        
