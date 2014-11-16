@@ -2,16 +2,6 @@
 
 require 'scraperwiki.php';
 	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
-
-	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
-	$pathToResult 		= 'http://service-bw.de/zfinder-bw-web/authorities.do?bhid=';
-	$pathToEntry		= 'http://service-bw.de/zfinder-bw-web/authorities.do?beid=';
-
-	$bhidpattern = '/bhid=([0-9]*)&/mg';
-	$beidpattern = '/beid=([0-9]*)&/mg';
-
-	
-	$matches;
 	/*
 	foreach ($lettersArray as $value) {
 		print ('Verarbeite Buchstaben ' . $value . "\n");
@@ -21,9 +11,11 @@ require 'scraperwiki.php';
 	ripBhidByLetter("C");
 
 function ripBhidByLetter($letter){
+	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
+	$bhidpattern = '/bhid=([0-9]*)&/mg';
 	
 	$matchesBhid;
-	$output = scraperwiki::scrape("$pathToEntry" . $bhid);
+	$output = scraperwiki::scrape("$pathToOverviewByLetter" . $bhid);
         preg_match_all($bhidpattern, $output, $matchesBhid);
         
         foreach ($matchesBhid[1] as $value){
@@ -32,8 +24,9 @@ function ripBhidByLetter($letter){
 }
 
 function ripBeidByBhid($bhid) {
+	$pathToResult 		= 'http://service-bw.de/zfinder-bw-web/authorities.do?bhid=';
 	$matchesBeid;
-	$output = scraperwiki::scrape("$pathToEntry" . $bhid);
+	$output = scraperwiki::scrape("$pathToResult" . $bhid);
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBhid[1] as $value){
@@ -45,6 +38,8 @@ function ripBeidByBhid($bhid) {
 
 
 function ripByBeid ($beid){
+	$pathToEntry		= 'http://service-bw.de/zfinder-bw-web/authorities.do?beid=';
+	$beidpattern = '/beid=([0-9]*)&/mg';
 	
 	$namepattern = '/<h1>(.*)<\/h1>/smiU';
 	$faxpattern = '/<td>Fax:<\/td><td>(.*)<\/td>/smiU';
