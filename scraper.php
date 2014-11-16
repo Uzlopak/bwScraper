@@ -32,6 +32,10 @@ function ripBeidByBhid($bhid) {
         	if (existsBeid($value) == false) {
         		ripByBeid ($value);
         	}
+        	else
+        	{
+        		print "beid $value already in database";
+        	}
         }
 	
 }
@@ -99,7 +103,7 @@ function existsBeid($beid){
 	$result = false;
 	$count = 0;
 	// Set total number of rows
-	if ($result = scraperwiki::select("count(*) as count from data where request_note ='". $value . "'")) {
+	if ($result = scraperwiki::select("count(*) as count from data where request_note ='". $beid . "'")) {
 		if (!empty($result[0]['count'])) {
 			$count = $result[0]['count'];
 		} 
