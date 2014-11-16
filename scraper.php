@@ -91,8 +91,7 @@ function ripByBeid ($beid){
 	$faxstring = (strlen(trim($fax)) != 0) ? 'Fax: ' . trim($fax) : '';
 	$contactconnector = (strlen($phonestring) > 0 && strlen($faxstring) > 0) ? ', ': '';
 	$contact = $phonestring . $contactconnector . $faxstring;
-	$juristication__slug = 'baden-wuerttemberg';
 	
-	scraperwiki::save_sqlite(array('data'), array('name' => $name,'email' => $email, 'address' => $adress, 'contact' => $contact, 'jurisdiction__slug' => $jurisdiction__slug, 'other_names' => '', 'description' => '', 'topic__slug' => '', 'parent__name' => '', 'classification' => '', 'url' => $url, 'website_dump' => '', 'request_note' => $beid));
+	scraperwiki::save_sqlite(array('data'), array('name' => $name,'email' => $email, 'address' => $adress, 'contact' => $contact, 'jurisdiction__slug' => 'baden-wuerttemberg', 'other_names' => '', 'description' => '', 'topic__slug' => '', 'parent__name' => '', 'classification' => '', 'url' => $url, 'website_dump' => '', 'request_note' => $beid));
       	print $name . "\n";
 }
