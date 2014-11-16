@@ -109,9 +109,9 @@ function existsBeid($beid){
 		} 
 	}
 	$count = empty($count) ? 0 : $count;
-	if ($count > 0){
+	if ($count != 0){
 		$result = true;
 	}
-		print ($count);
+	print ($count);
 	return $result;
 }
