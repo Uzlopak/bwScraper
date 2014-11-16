@@ -52,7 +52,7 @@ function ripByBeid ($beid){
 	$faxpattern = '/<td>Fax:<\/td><td>(.*)<\/td>/smiU';
 	$telefonpattern = '/<td>Telefon:<\/td><td>(.*)<\/td>/smiU';
 	$emailpattern = '/<td>E-Mail:<\/td><td><a href="(.*)"/imUs';
-	$emailpattern2 = '/href="mailto:(.*)">.*<\/a>/imUs'
+	$emailpattern2 = '/href="mailto:(.*)">.*<\/a>/imUs';
 	$adresspattern1 = '/<h3>Hausanschrift:<\/h3><div class="column in_content"><p>(.*)<\/p><\/div>/smiU';
 	$adresspattern2 = '/<h3>Postanschrift:<\/h3><p>(.*)<\/p><table>/smiU';
 	$wwwpattern = '/<td>Homepage:<\/td><td><a href="(.*)"/smiU';
