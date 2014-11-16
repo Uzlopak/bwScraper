@@ -34,7 +34,7 @@ function ripBeidByBhid($bhid) {
         	}
         	else
         	{
-        		print "beid $value already in database";
+        		print "beid $value already in database\n";
         	}
         }
 	
