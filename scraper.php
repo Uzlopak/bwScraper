@@ -121,14 +121,11 @@ function ripByBeid ($beid){
 function countBeidInDB($beid){
 	$count = 0;
 	// Set total number of rows
-	if ($result = scraperwiki::select("count(*) as count from swdata where request_note ='". $beid . "'")) {
+	if ($result = scraperwiki::select("count(*) as count from data where request_note ='". $beid . "'")) {
 		if (!empty($result[0]['count'])) {
 			$count = $result[0]['count'];
 		} 
 	}
 	$count = empty($count) ? 0 : $count;
-	if ($count != 0){
-		//$result = true;
-	}
 	return $count;
 }
