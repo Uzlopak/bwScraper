@@ -25,7 +25,7 @@ function getHighestPageNumber ($htmlcode){
 	$pagepattern = '/page=(.*)">/miUs';
 	$result = 1;
 	$matches; 
-        preg_match_all($pagepattern, $output, $matches);
+        preg_match_all($pagepattern, $htmlcode, $matches);
         
         foreach ($matches as $value){
         	if ($value > $result) {
