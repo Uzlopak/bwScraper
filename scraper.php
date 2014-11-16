@@ -29,7 +29,7 @@ function ripBeidByBhid($bhid) {
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
-        	if (existsBeid($value) == false) {
+        	if (countBeidInDB($value) == 0) {
         		ripByBeid ($value);
         	}
         	else
@@ -99,8 +99,7 @@ function ripByBeid ($beid){
       	print $name . "\n";
 }
 
-function existsBeid($beid){
-	$result = false;
+function countBeidInDB($beid){
 	$count = 0;
 	// Set total number of rows
 	if ($result = scraperwiki::select("count(*) as count from data where request_note ='". $beid . "'")) {
@@ -112,6 +111,5 @@ function existsBeid($beid){
 	if ($count != 0){
 		//$result = true;
 	}
-	print ($count);
-	return $result;
+	return $count;
 }
