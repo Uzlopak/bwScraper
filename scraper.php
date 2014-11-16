@@ -1,5 +1,4 @@
 <?php
-
 require 'scraperwiki.php';
 	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
 	
@@ -29,8 +28,9 @@ function getHighestPageNumber ($htmlcode){
         preg_match_all($pagepattern, $htmlcode, $matches);
         
         foreach ($matches as $value){
-        	if ($value > $result) {
-        		$result = $value;
+		$val = intval($value);
+        	if ($val  > $result) {
+        		$result = $val ;
         	}
         }
         return $result;
@@ -41,7 +41,7 @@ function ripBeidByBhid($bhid, $page) {
 	$beidpattern = '/beid=([0-9]*)&/m';
 	$matchesBeid;
 	$output = scraperwiki::scrape($pathToResult . $bhid . '&page=' . $page);
-	print ($pathToResult . $bhid . '&page=' . $page);
+	print ($pathToResult . $bhid . '&page=' . $page . "\n");
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
@@ -121,7 +121,7 @@ function ripByBeid ($beid){
 function countBeidInDB($beid){
 	$count = 0;
 	// Set total number of rows
-	if ($result = scraperwiki::select("count(*) as count from data where request_note ='". $beid . "'")) {
+	if ($result = scraperwiki::select("count(*) as count from swdata where request_note ='". $beid . "'")) {
 		if (!empty($result[0]['count'])) {
 			$count = $result[0]['count'];
 		} 
