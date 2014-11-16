@@ -109,6 +109,7 @@ function existsBeid($beid){
 		} 
 	}
 	if ($count > 0){
+		print ($count);
 		$result = true;
 	}
 	return $result;
