@@ -12,7 +12,7 @@ require 'scraperwiki.php';
 
 function ripBhidByLetter($letter){
 	$pathToOverviewByLetter = 'http://service-bw.de/zfinder-bw-web/authorities.do?action=search&letter=';
-	$bhidpattern = '/bhid=([0-9]*)&/mg';
+	$bhidpattern = '/bhid=([0-9]*)&/m';
 	
 	$matchesBhid;
 	$output = scraperwiki::scrape("$pathToOverviewByLetter" . $letter);
@@ -25,6 +25,7 @@ function ripBhidByLetter($letter){
 
 function ripBeidByBhid($bhid) {
 	$pathToResult 		= 'http://service-bw.de/zfinder-bw-web/authorities.do?bhid=';
+	$beidpattern = '/beid=([0-9]*)&/m';
 	$matchesBeid;
 	$output = scraperwiki::scrape("$pathToResult" . $bhid);
         preg_match_all($beidpattern, $output, $matchesBeid);
@@ -39,7 +40,6 @@ function ripBeidByBhid($bhid) {
 
 function ripByBeid ($beid){
 	$pathToEntry		= 'http://service-bw.de/zfinder-bw-web/authorities.do?beid=';
-	$beidpattern = '/beid=([0-9]*)&/mg';
 	
 	$namepattern = '/<h1>(.*)<\/h1>/smiU';
 	$faxpattern = '/<td>Fax:<\/td><td>(.*)<\/td>/smiU';
