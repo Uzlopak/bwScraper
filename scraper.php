@@ -1,6 +1,7 @@
 <?php
 require 'scraperwiki.php';
 	$lettersArray = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','XYZ');
+	$lettersArray = array('S','T','U','V','W','XYZ');
 
 	foreach ($lettersArray as $value) {
 		print ('Verarbeite Buchstaben ' . $value . "\n");
@@ -41,7 +42,7 @@ function ripBeidByBhid($bhid, $page) {
 	$beidpattern = '/beid=([0-9]*)&/m';
 	$matchesBeid;
 	$output = scraperwiki::scrape($pathToResult . $bhid . '&page=' . $page);
-	print ($pathToResult . $bhid . '&page=' . $page . "\n");
+	//print ($pathToResult . $bhid . '&page=' . $page . "\n");
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
@@ -50,7 +51,7 @@ function ripBeidByBhid($bhid, $page) {
         	}
         	else
         	{
-        		print "beid $value already in database\n";
+        		//print "beid $value already in database\n";
         	}
         }
         if (getHighestPageNumber($output) != $page) {
