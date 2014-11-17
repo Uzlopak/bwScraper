@@ -42,7 +42,7 @@ function ripBeidByBhid($bhid, $page) {
 	$beidpattern = '/beid=([0-9]*)&/m';
 	$matchesBeid;
 	$output = scraperwiki::scrape($pathToResult . $bhid . '&page=' . $page);
-	//print ($pathToResult . $bhid . '&page=' . $page . "\n");
+	print ($pathToResult . $bhid . '&page=' . $page . "\n");
         preg_match_all($beidpattern, $output, $matchesBeid);
         
         foreach ($matchesBeid[1] as $value){
